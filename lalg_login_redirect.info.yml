@@ -1,0 +1,7 @@
+name: 'LALG Login Redirect'
+description: 'Redirect to myprofile page after login'
+package: 'Custom'
+type: module
+core_version_requirement: ^8.8 || ^9
+dependencies:
+version: "0.0.1"
