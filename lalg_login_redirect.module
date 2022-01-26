@@ -1,0 +1,27 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function lalg_login_redirect_form_user_login_form_alter(&$form,FormStateInterface $form_state) {
+  $form['#submit'][] = 'lalg_login_redirect_user_login_submit';
+}
+
+/**
+ * Form submission handler for user_login_form().
+ *
+ * Redirects the user to the dashboard after logging in.
+ */
+function lalg_login_redirect_user_login_submit(&$form, FormStateInterface $form_state) {
+  $url = \Drupal\Core\Url::fromUri('internal:/myprofile');
+
+  // Check if a destination was set, probably on an exception controller.
+  // @see \Drupal\user\Form\UserLoginForm::submitForm()
+  $request = \Drupal::service('request_stack')->getCurrentRequest();
+  if (!$request->request->has('destination')) {
+    $form_state->setRedirectUrl($url);
+  } else {
+    $request->query->set('destination', $request->request->get('destination'));
+  }
+}
