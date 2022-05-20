@@ -8,6 +8,14 @@ function lalg_login_redirect_form_user_login_form_alter(&$form,FormStateInterfac
   $form['#submit'][] = 'lalg_login_redirect_user_login_submit';
 }
 
+function lalg_login_redirect_form_user_form_alter(&$form,FormStateInterface $form_state) {
+  foreach (array_keys($form['actions']) as $action) {
+    if (isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+      $form['actions'][$action]['#submit'][] = 'lalg_login_redirect_user_login_submit';
+    }
+  }
+}
+
 /**
  * Form submission handler for user_login_form().
  *
