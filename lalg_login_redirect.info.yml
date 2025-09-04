@@ -4,4 +4,4 @@ package: 'Custom'
 type: module
 core_version_requirement: ^9 || ^10
 dependencies:
-version: "0.2.0"
+version: "0.3.0"
