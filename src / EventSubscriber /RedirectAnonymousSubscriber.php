@@ -52,7 +52,6 @@ class RedirectAnonymousSubscriber implements EventSubscriberInterface {
     $route_name = \Drupal::routeMatch()->getRouteName();
     if ( ($this->account->isAnonymous()) && ( !in_array($route_name, $allowed)) ) {
       $path = $event->getRequest()->getPathInfo();
-      #\Drupal::logger('lalg_login_redirect')->notice($path);
       if (strpos($path, 'myprofile') !== false) {
         $event->setResponse(new RedirectResponse('/user/login', 302));
       }
