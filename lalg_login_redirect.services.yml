@@ -1,0 +1,6 @@
+services:
+  redirect_anonymous.event_subscriber:
+    class: '\Drupal\lalg_login_redirect\EventSubscriber\RedirectAnonymousSubscriber'
+    arguments: [ '@current_user' ]
+    tags:
+      - {name: event_subscriber}
